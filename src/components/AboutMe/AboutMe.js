@@ -4,6 +4,8 @@ import './AboutMe.css';
 import imageFoto from '../../images/about-me-foto.jpg'
 import { myBirthday } from '../../utils/constants'
 import { Link } from 'react-router-dom';
+import Portfolio from '../Portfolio/Portfolio'
+
 const AboutMe = () => {
   function myAge (date) {
     if ((new Date(date) === "Invalid Date") || isNaN(new Date(date))) return 'проверьте настройки дня рождения'
@@ -30,7 +32,7 @@ const AboutMe = () => {
         </div>
         <img className='about-me__image' src={imageFoto} alt='мое фото - Марат Загриев' />
       </div>
-      <h4 className='about-me__portfolio'></h4>
+      <Portfolio />
     </Section>
   )
 }

@@ -4,9 +4,8 @@
   align-items: center;
   padding: 110px 70px;
   box-sizing: border-box;
+  width: 100%;
 }
 .section_theme_grey {
-  background-color: var(
-    --bgcolor-light
-  );
+  background-color: var(--bgcolor-light);
 }
