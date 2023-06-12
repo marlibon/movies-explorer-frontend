@@ -9,3 +9,7 @@
 .section_theme_grey {
   background-color: var(--bgcolor-light);
 }
+.section_theme_small {
+  padding-top: 0;
+  padding-bottom: 0;
+}
