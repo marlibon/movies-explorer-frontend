@@ -4,36 +4,23 @@ import Section from '../Section/Section';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import { useEffect, useState } from 'react';
-import initialFilms from '../../utils/initialFilms.json';
 
-const MoviesCardList = () => {
-  const [films, setFilms] = useState([]);
-  const remainingFilms = initialFilms.slice(films.length);
-  const [isLoading, setIsLoading] = useState(true);
-
-
+const MoviesCardList = ({ films, isLoading, remainingFilms, viewStillFilms, handleClickDeleteButton }) => {
   // временная ручная установка прелоадера чтобы показать момент загрузки
   useEffect(() => {
-    viewStillFilms()
+    viewStillFilms && viewStillFilms()
   }, [])
 
-  function viewStillFilms () {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      setFilms([...films, ...remainingFilms.slice(0, 4)])
-    }, 2000)
-
-  }
   return (
     <Section theme="small" >
       {films.length ? (
         <ul className='movies-card-list'>
-          {films.map(({ image, nameRU, duration }, index) => <MoviesCard image={image.url} title={nameRU} duration={duration} key={index} />)}
+          {films.map((movie, index) => <MoviesCard movie={movie} key={index} handleClickDeleteButton={handleClickDeleteButton} />)}
         </ul>
-      ) : ''}
+      ) : !isLoading ? <h3>Список фильмов пуст</h3> : ''}
+
       {isLoading ? <Preloader /> : ""}
-      {remainingFilms.length ? <button className='movies-card-list__button' onClick={viewStillFilms}>Ещё</button> : ''}
+      {remainingFilms?.length ? <button className='movies-card-list__button' onClick={viewStillFilms}>Ещё</button> : ''}
     </Section>
   )
 }
