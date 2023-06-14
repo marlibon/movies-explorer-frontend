@@ -3,7 +3,7 @@ const DeleteButton = ({ handleClickDeleteButton }) => {
 
     return (
         <button
-            href='#'
+            type='button'
             className={`delete-button`}
             onClick={handleClickDeleteButton}
         // title={`${isLiked ? 'Удалить из избранного' : 'Добавить в избранное'}`}

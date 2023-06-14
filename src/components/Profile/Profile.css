@@ -3,4 +3,13 @@
   display: grid;
   align-items: center;
   justify-content: flex-start;
+  grid-template-columns: 1fr;
+}
+.profile__form {
+  display: flex;
+  flex-direction: column;
+}
+.profile__links {
+  display: flex;
+  flex-direction: column;
 }

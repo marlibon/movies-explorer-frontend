@@ -3,7 +3,7 @@ import './LikeButton.css';
 const LikeButton = ({ isLiked, handleClickLikeButton }) => {
     return (
         <button
-            href='#'
+            type='button'
             className={`like-button${isLiked ? ' like-button_active' : ''}`}
             onClick={handleClickLikeButton}
             title={`${isLiked ? 'Удалить из избранного' : 'Добавить в избранное'}`}
