@@ -1,7 +1,10 @@
 // компонент страницы изменения профиля
+import { useState } from 'react';
 import './Profile.css';
+import e from 'express';
 
 const Profile = () => {
+  // const [edit, setEdit] = useState(false)
   return (
     <section className='profile'>
       <h1 className='profile__title'>Привет, Виталий!</h1>
@@ -39,11 +42,11 @@ const Profile = () => {
           />
         </label>
 
-        <button type='submit' className='profile__form-submit'>Сохранить</button>
+        {/* {edit ? <button type='submit' className='profile__form-submit'>Сохранить</button> : ''} */}
       </form>
       <nav className='profile__links'>
-        <button type='button' className='profile__link'>Редактировать</button>
-        <button type='button' className='profile__link profile__color_red'>Выйти из аккаунта</button>
+        {/* <button type='button' className='profile__link' onClick={() => setEdit(!edit)}>Редактировать</button> */}
+        <button type='button' className='profile__link profile__link_color_red'>Выйти из аккаунта</button>
       </nav>
     </section>
   )
