@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Section from '../Section/Section';
 import './NotFound.css';
 
 const NotFound = () => {
@@ -9,11 +8,11 @@ const NotFound = () => {
         navigate(-1);
     }
     return (
-        <Section>
+        <section className='not-found'>
             <h1 className='not-found__title'>404</h1>
             <p className='not-found__description'>Страница не найдена</p>
             <button onClick={handleClick} className='not-found__link'>Назад</button>
-        </Section >
+        </section >
     )
 }
 export default NotFound
