@@ -14,4 +14,14 @@ body {
   --bgcolor-action: #2be080;
   --max-section-width: 1280px;
   --min-section-width: 320px;
+  --font-family: 'Inter', 'Arial', 'Georgia';
 }
+/*
+выбираем следующие эндпоинты для карточек
+990
+820
+530
+
+для хедера
+при 600 уже не помешается
+*/

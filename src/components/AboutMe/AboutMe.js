@@ -21,7 +21,7 @@ const AboutMe = () => {
     }
   }
   return (
-    <Section title="Студент" >
+    <Section title="Студент" theme='aboutme'>
       <div className='about-me__column'>
         <div className='about-me__info'>
           <h3 className='about-me__title'>Марат</h3>

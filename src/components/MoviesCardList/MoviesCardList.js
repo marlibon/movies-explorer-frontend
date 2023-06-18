@@ -12,7 +12,7 @@ const MoviesCardList = ({ films, isLoading, remainingFilms, viewStillFilms, hand
   }, [])
 
   return (
-    <Section theme="small" >
+    <Section theme="" >
       {films.length ? (
         <ul className='movies-card-list'>
           {films.map((movie, index) => <MoviesCard movie={movie} key={index} handleClickDeleteButton={handleClickDeleteButton} />)}

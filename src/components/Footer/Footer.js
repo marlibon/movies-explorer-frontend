@@ -10,10 +10,10 @@ const Footer = () => {
       <nav className='footer__navigation'>
         <p className='footer__copyright'>&#169; {new Date().getFullYear()}</p>
         <ul className='footer__nav-links'>
-          <li>
+          <li className='footer__nav-link-item'>
             <Link className='footer__nav-link' to="#">Яндекс.Практикум</Link>
           </li>
-          <li>
+          <li className='footer__nav-link-item'>
             <Link className='footer__nav-link' to="#">Github</Link>
           </li>
         </ul>

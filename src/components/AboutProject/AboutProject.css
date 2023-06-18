@@ -3,11 +3,38 @@
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 820px) {
+  .about-project__cards {
+    padding: 70px 0 93px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .about-project__cards {
+    flex-direction: column;
+    padding: 61px 0 60px;
+  }
+}
+
 .about-project__card {
-  padding-right: 40px;
+  padding-right: 52px;
+}
+@media screen and (max-width: 820px) {
+  .about-project__card {
+    padding-right: 37px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .about-project__card {
+    padding-right: 0;
+  }
 }
 .about-project__card:nth-of-type(2) {
   padding-right: 0;
+}
+@media screen and (max-width: 530px) {
+  .about-project__card:nth-of-type(2) {
+    padding-top: 57px;
+  }
 }
 .about-project__subtitle {
   font-style: normal;
@@ -16,6 +43,13 @@
   line-height: 24px;
   letter-spacing: -0.04em;
   margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 820px) {
+  .about-project__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 .about-project__description {
   font-style: normal;
@@ -23,31 +57,67 @@
   font-size: 14px;
   line-height: 20px;
   margin: 0;
+  padding-top: 26px;
+}
+@media screen and (max-width: 820px) {
+  .about-project__description {
+    padding-top: 22px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .about-project__description {
+    padding-top: 15px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
+  }
 }
 .about-project__table {
   display: grid;
   grid-template-columns: 1fr 4fr;
   width: 100%;
 }
+@media screen and (max-width: 820px) {
+  .about-project__table {
+    grid-template-columns: 140px auto;
+  }
+}
+@media screen and (max-width: 530px) {
+  .about-project__table {
+    grid-template-columns: 100px auto;
+  }
+}
 .about-project__table-item {
-  text-align: center;
   font-style: normal;
-  font-size: 14px;
-  line-height: 17px;
   text-align: center;
-  padding: 9px 0 9px;
+  padding: 14px 0 14px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #a0a0a0;
 }
+@media screen and (max-width: 530px) {
+  .about-project__table-item {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 10px 0;
+  }
+}
 .about-project__table-item_heading {
+  padding: 9px 0 10px;
   font-weight: 400;
-  background-color: var(
-    --bgcolor-medium
-  );
+  background-color: var(--bgcolor-medium);
   color: black;
 }
+@media screen and (max-width: 530px) {
+  .about-project__table-item_heading {
+    padding-top: 12px;
+  }
+}
+
 .about-project__table-item_heading:first-of-type {
   background-color: black;
   color: white;
