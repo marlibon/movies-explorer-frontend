@@ -15,7 +15,7 @@ const Movies = () => {
     setIsLoading(true)
     setTimeout(() => {
       setIsLoading(false)
-      setFilms([...films, ...remainingFilms.slice(0, 4)])
+      setFilms([...films, ...remainingFilms.slice(0, 5)])
     }, 2000)
   }
 

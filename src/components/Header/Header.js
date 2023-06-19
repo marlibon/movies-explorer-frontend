@@ -1,13 +1,10 @@
 // компонент, который отрисовывает шапку сайта на страницу
-import { Link, Routes, Route, useNavigate } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import './Header.css';
-import profileIcon from '../../images/profile-icon.svg';
+import Navigation from '../Navigation/Navigation';
 
-const Header = () => {
-  const navigate = useNavigate();
-  const navigation = () => {
-  }
+const Header = ({ menuOpened, handleMenuOpened }) => {
   return (
     <header className='header'>
 
@@ -18,24 +15,30 @@ const Header = () => {
           <>
             <Logo />
             <nav className='header__nav-links'>
-              <Link to="/signup" className='header__link'>Регистрация</Link>
-              <Link to="/signin" className='header__link header__link_type_btn'>Войти</Link>
+              <Link to="/signup" className='header__link header__link_auth'>Регистрация</Link>
+              <Link to="/signin" className='header__link header__link_auth header__link_type_btn'>Войти</Link>
             </nav>
           </>
         } />
         {/* для остальных страниц */}
         <Route path="*" element={
           <>
-            <nav className='header__nav-links'>
+            <nav className='header__nav-links header__nav-links_hidden_tablet-mobile'>
               <Logo />
               <Link to="/movies" className='header__link'>Фильмы</Link>
-              <Link to="/saved-movies" className='header__link header__link_medium'>Сохраненные фильмы</Link>
+              <Link to="/saved-movies" className='header__link header__link_medium'>Сохранённые фильмы</Link>
             </nav>
-            <nav className='header__nav-links'>
-              <Link to="/profile" className='header__link'>Аккаунт
+            <nav className='header__nav-links header__nav-links_hidden_tablet-mobile'>
+              <Link to="/profile" className='header__link header__link_profile'>Аккаунт
                 <div className='header__nav-link-icon'></div>
               </Link>
             </nav>
+            <nav className='header__nav-links header__nav-links_hidden_pc'>
+              <Logo />
+              <button className={`header__btn-menu ${menuOpened ? 'header__btn-menu_close' : ''}`} onClick={() => handleMenuOpened(!menuOpened)}>
+              </button>
+            </nav>
+            <Navigation menuOpened={menuOpened} onClose={() => handleMenuOpened(false)} />
           </>
         } />
       </Routes>

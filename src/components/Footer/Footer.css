@@ -82,13 +82,18 @@
 @media screen and (max-width: 530px) {
   .footer__nav-links {
     padding: 0;
-    padding-top: 30px;
+    padding-top: 29px;
     flex-direction: column;
   }
 }
 .footer__nav-link-item {
-  padding: 5px 0 0 0;
+  padding: 0;
   margin: 0;
+}
+@media screen and (max-width: 530px) {
+  .footer__nav-link-item {
+    padding: 5px 0 0 0;
+  }
 }
 .footer__nav-link-item:first-of-type {
   padding: 0;

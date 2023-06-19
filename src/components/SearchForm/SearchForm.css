@@ -21,6 +21,14 @@
   box-sizing: border-box;
   height: 48px;
 }
+@media screen and (max-width: 530px) {
+  .search-form__input {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    padding-left: 18px;
+  }
+}
 .search-form__submit {
   width: 100%;
   font-weight: 500;

@@ -5,7 +5,6 @@ import LikeButton from '../LikeButton/LikeButton';
 import DeleteButton from '../DeleteButton/DeleteButton';
 
 const MoviesCard = ({ movie, handleClickDeleteButton }) => {
-  console.log(movie);
   const { image, nameRU, duration, liked } = movie;
   const [isLiked, setIsliked] = useState(liked)
 
