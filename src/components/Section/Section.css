@@ -4,7 +4,7 @@
   align-items: center;
   padding: 110px 70px 96px;
   box-sizing: border-box;
-  width: 100%;
+  min-width: 320px;
 }
 @media screen and (max-width: 820px) {
   .section {
@@ -14,7 +14,6 @@
 @media screen and (max-width: 530px) {
   .section {
     padding: 70px 18px;
-    width: 320px;
   }
 }
 @media screen and (max-width: 530px) {

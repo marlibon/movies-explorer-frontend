@@ -44,6 +44,7 @@ const Profile = () => {
             minLength={2}
             maxLength={30}
             id='profile-name'
+            placeholder='Имя'
             disabled={!edit}
             defaultValue={values.name}
           />
@@ -58,6 +59,7 @@ const Profile = () => {
             minLength={2}
             maxLength={30}
             id='profile-email'
+            placeholder='E-mail'
             disabled={!edit}
             defaultValue={values.email}
           />

@@ -27,7 +27,7 @@
   color: #a0a0a0;
   display: block;
   width: 100%;
-  border-bottom: 1px solid #a0a0a0;
+  border-bottom: 1px solid var(--bgcolor-medium);
   padding-top: 88px;
   padding-bottom: 20px;
 }

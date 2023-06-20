@@ -22,17 +22,19 @@ const AboutMe = () => {
   }
   return (
     <Section title="Студент" theme='aboutme'>
-      <div className='about-me__column'>
-        <div className='about-me__info'>
-          <h3 className='about-me__title'>Марат</h3>
-          <h4 className='about-me__subtitle'>Фронтенд-разработчик, {myAge(myBirthday)}</h4>
-          <p className='about-me__description'>Я родился и живу в г.Ишимбай, закончил УГНТУ . У меня есть жена
-            и 2 сына. Я люблю кодить, работать с деревом, отдыхать на природе. Веб-разработкой занимаюсь с 2011 года, но с того времени успел побывать и предпринимателем, и инженером-энергетиком, но сейчас я полностью ушел в программирование.</p>
-          <Link className='about-me__link' to="#">Github</Link>
+      <div className='about-me'>
+        <div className='about-me__column'>
+          <div className='about-me__info'>
+            <h3 className='about-me__title'>Марат</h3>
+            <h4 className='about-me__subtitle'>Фронтенд-разработчик, {myAge(myBirthday)}</h4>
+            <p className='about-me__description'>Я родился и живу в г.Ишимбай, закончил УГНТУ . У меня есть жена
+              и 2 сына. Я люблю кодить, работать с деревом, отдыхать на природе. Веб-разработкой занимаюсь с 2011 года, но с того времени успел побывать и предпринимателем, и инженером-энергетиком, но сейчас я полностью ушел в программирование.</p>
+            <Link className='about-me__link' to="#">Github</Link>
+          </div>
+          <img className='about-me__image' src={imageFoto} alt='мое фото - Марат Загриев' />
         </div>
-        <img className='about-me__image' src={imageFoto} alt='мое фото - Марат Загриев' />
+        <Portfolio />
       </div>
-      <Portfolio />
     </Section>
   )
 }

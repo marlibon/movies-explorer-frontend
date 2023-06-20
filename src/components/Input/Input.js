@@ -32,6 +32,7 @@ const Input = ({
                 maxLength={maxLength}
                 id={name}
                 onChange={handleChange}
+                placeholder={label}
                 defaultValue={defaultValue || ""}
                 autoFocus={autoFocus}
             />

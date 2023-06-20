@@ -26,11 +26,12 @@
 }
 .movies-card-list__button {
   width: 320px;
-  height: 36px;
+  height: 37px;
   border: 1px solid var(--bgcolor-medium);
   background-color: white;
-  padding: 0;
-  margin: 60px 0 70px;
+  padding: 0px 0 0px 0;
+  margin: 59px 0 70px;
+  font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -38,6 +39,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 7px;
+  font-family: var(--font-family);
 }
 @media screen and (max-width: 820px) and (min-width: 530px) {
   .movies-card-list__button {
