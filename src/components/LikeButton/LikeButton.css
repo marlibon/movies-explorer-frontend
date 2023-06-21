@@ -1,0 +1,26 @@
+.like-button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  justify-self: end;
+  align-items: center;
+  color: white;
+  background-color: #f9f9f9;
+  border-radius: 36px;
+  border: none;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+@media screen and (max-width: 820px) {
+  .like-button {
+    width: 23px;
+    height: 21px;
+  }
+}
+.like-button_active {
+  color: #ff4062;
+}
+.like-button:hover {
+  scale: 1.1;
+}
