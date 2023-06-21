@@ -3,20 +3,20 @@ import './SearchForm.css';
 import Section from '../Section/Section';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = () => {
+const SearchForm = ({ handleSubmit, nameInput, nameCheckboxShortFilms }) => {
   return (
     <Section theme="small" >
-      <form className='search-form'>
+      <form className='search-form' onSubmit={handleSubmit}>
         <input
           type="text"
           className='search-form__input'
-          id="movie-search"
-          name="movie-search"
+          id={nameInput}
+          name={nameInput}
           placeholder="Фильм"
           required={true}
         />
         <button className="search-form__submit" type="submit">Найти</button>
-        <FilterCheckbox />
+        <FilterCheckbox nameCheckboxShortFilms={nameCheckboxShortFilms} />
       </form>
     </Section>
   )

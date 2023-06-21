@@ -15,6 +15,7 @@ const MoviesCard = ({ movie, handleClickDeleteButton }) => {
   function convertMinutesToHoursAndMinutes (minutes) {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
+    if (!hours) return `${remainingMinutes}м`;
     return `${hours}ч ${remainingMinutes}м`;
   }
 
