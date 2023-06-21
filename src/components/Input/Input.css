@@ -10,12 +10,7 @@
   color: black;
   font-family: var(--font-family);
 }
-/*.input_focus вспомогательный стиль, который только для проверки верстки на пиксель перфект, потом он будет удален*/
-.input_focus {
-  font-weight: 500;
-  border-bottom: 1px solid black;
-  padding: 5px 0 8px;
-}
+
 .input:focus {
   font-weight: 500;
   border-bottom: 1px solid black;
@@ -25,7 +20,7 @@
   color: #ff4062;
   padding-top: 5px;
 }
-.input__label {
+.label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,10 +30,10 @@
   line-height: 12px;
   color: #a0a0a0;
 }
-.input__label:first-of-type {
+.label:first-of-type {
   padding-top: 0;
 }
-.input__error {
+.label__error {
   padding-top: 6px;
   margin-bottom: 8px;
   display: block;
@@ -53,6 +48,6 @@
   overflow: hidden;
   -webkit-line-clamp: 2;
 }
-.input__error_active {
+.label__error_active {
   opacity: 1;
 }

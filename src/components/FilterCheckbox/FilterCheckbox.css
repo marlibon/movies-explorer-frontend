@@ -1,12 +1,14 @@
-.filter-checkbox__toggle {
+.filter-checkbox {
   width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
-  padding-top: 31px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #e8e8e8;
   display: inline-flex;
   justify-content: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+.filter-checkbox__toggle {
+  padding-top: 31px;
+  padding-bottom: 40px;
 }
 
 .filter-checkbox__toggle-label {

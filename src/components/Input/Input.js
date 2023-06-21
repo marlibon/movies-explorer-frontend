@@ -18,7 +18,7 @@ const Input = ({
             : setError('')
     }
     return (
-        <label className="input__label">
+        <label className="label">
             {label}
             <input
                 className={`input
@@ -37,7 +37,7 @@ const Input = ({
                 autoFocus={autoFocus}
             />
             <span
-                className={`input__error ${error || errorDefault ? 'input__error_active' : ''}`}
+                className={`label__error ${error || errorDefault ? 'label__error_active' : ''}`}
             >{error ? error : 'Что-то пошло не так...'}
             </span>
         </label>

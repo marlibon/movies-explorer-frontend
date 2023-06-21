@@ -1,5 +1,9 @@
 .techs {
   display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 .techs__title {
   margin: 0;

@@ -14,8 +14,8 @@ const Navigation = ({ menuOpened, onClose }) => {
   };
 
   return (
-    <div className={`navigation ${menuOpened && 'navigation_visible'}`} onClick={handleClickCloseByOverlay} >
-      <nav className={`navigation__inner ${menuOpened && 'navigation__inner_visible'}`}>
+    <div className={`navigation ${menuOpened ? 'navigation_visible' : ''}`} onClick={handleClickCloseByOverlay} >
+      <nav className={`navigation__inner ${menuOpened ? 'navigation__inner_visible' : ''}`}>
         <ul className='navigation__links'>
           <li className='navigation__links-item navigation__links-item_type_only-mobile'>
             <NavLink className={setLinkClass} to='/' onClick={onClose}>

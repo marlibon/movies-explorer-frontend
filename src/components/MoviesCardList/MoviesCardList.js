@@ -20,7 +20,7 @@ const MoviesCardList = ({ films, isLoading, remainingFilms, viewStillFilms, hand
       ) : !isLoading ? <h3>Список фильмов пуст</h3> : ''}
 
       {isLoading ? <Preloader /> : ""}
-      {remainingFilms?.length ? <button className='movies-card-list__button' onClick={viewStillFilms}>Ещё</button> : ''}
+      {remainingFilms?.length ? <button className='movies-card-list-btn' onClick={viewStillFilms}>Ещё</button> : ''}
     </Section>
   )
 }

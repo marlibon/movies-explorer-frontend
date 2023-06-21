@@ -1,5 +1,9 @@
 .about-project {
   display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .about-project__cards {
   padding: 70px 0 110px;
