@@ -1,9 +1,11 @@
 import './FilterCheckbox.css';
 import { useState } from 'react';
 
-const FilterCheckbox = ({ onFilterChange = () => { }, isFilterOn = true, nameCheckboxShortFilms }) => {
+const FilterCheckbox = ({ nameCheckboxShortFilms }) => {
   const [isToggle, setIsToggle] = useState(true)
-
+  function handleChange (event) {
+    setIsToggle(!isToggle);
+  }
   return (
     <div className='filter-checkbox'>
       <div className='filter-checkbox__toggle'>
@@ -14,7 +16,7 @@ const FilterCheckbox = ({ onFilterChange = () => { }, isFilterOn = true, nameChe
             name={nameCheckboxShortFilms}
             id={nameCheckboxShortFilms}
             checked={isToggle}
-            onChange={() => setIsToggle(!isToggle)}
+            onChange={handleChange}
           />
           <span className={`filter-checkbox__toggle-checkbox-visible ${isToggle && 'filter-checkbox__toggle-checkbox-visible_checked'}`} />
           Короткометражки
