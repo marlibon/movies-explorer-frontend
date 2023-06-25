@@ -4,16 +4,13 @@ import './Movies.css';
 import { useEffect, useState } from "react";
 import Filter from '../Filter/Filter';
 
-const Movies = () => {
-  const [initialFilms, setInitialFilms] = useState([]); // все фильмы с сервера
+const Movies = ({ onError }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   function loadFilms () {
     return getAllMovies()
       .then((data) => {
-        console.log("сервер");
         if (data && data.length) {
-          setInitialFilms(data);
           setIsLoading(false)
           return data;
         } else {
@@ -24,7 +21,7 @@ const Movies = () => {
   }
 
   return (
-    <Filter setIsLoading={setIsLoading} isLoading={isLoading} initialFilms={initialFilms} loadFilms={loadFilms} />
+    <Filter setIsLoading={setIsLoading} isLoading={isLoading} loadFilms={loadFilms} onError={onError} isSavedMovies={false} />
   )
 }
 

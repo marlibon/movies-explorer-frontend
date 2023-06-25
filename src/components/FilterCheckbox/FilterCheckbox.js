@@ -1,15 +1,19 @@
 import './FilterCheckbox.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const FilterCheckbox = ({ nameCheckboxShortFilms }) => {
-  const [isToggle, setIsToggle] = useState(true)
+const FilterCheckbox = ({ dataForm, nameCheckboxShortFilms }) => {
+  const [isToggle, setIsToggle] = useState(dataForm[nameCheckboxShortFilms])
+  useEffect(() => {
+    setIsToggle(dataForm[nameCheckboxShortFilms])
+  }, [dataForm])
+
   function handleChange (event) {
     setIsToggle(!isToggle);
   }
   return (
     <div className='filter-checkbox'>
       <div className='filter-checkbox__toggle'>
-        <label className='filter-checkbox__toggle-label' htmlFor={nameCheckboxShortFilms}>
+        <label className='filter-checkbox__toggle-label' htmlFor={nameCheckboxShortFilms} title='не забудьте нажать кнопку "Найти"'>
           <input
             className='filter-checkbox__toggle-checkbox-invisible'
             type='checkbox'

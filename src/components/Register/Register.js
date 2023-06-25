@@ -7,9 +7,12 @@ import Section from '../Section/Section';
 import './Register.css';
 import { Link } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   const [values, setValues] = useState({})
-  function onSubmit () {
+  function onSubmit (event) {
+    event.preventDefault();
+    const { email, password, name } = values;
+    onRegister({ email, password, name });
   }
   function handleChange (e) {
     setValues({ ...values, [e.target.name]: e.target.value })
@@ -21,7 +24,7 @@ const Register = () => {
       <h2 className='section__title'>Добро пожаловать!</h2>
       <Form
         name='login'
-        buttonText='Зарегистрироваться'
+        textForButton='Зарегистрироваться'
         onSubmit={onSubmit}
         onChange={handleChange}
       >
@@ -32,7 +35,8 @@ const Register = () => {
           minLength={6}
           maxLength={30}
           label='Имя'
-          defaultValue='Виталий'
+          defaultValue=''
+          autoFocus={true}
         />
         <Input
           type='email'
@@ -41,8 +45,9 @@ const Register = () => {
           minLength={6}
           maxLength={30}
           label='E-mail'
-          defaultValue='pochta@yandex.ru'
-          autoFocus={true}
+          defaultValue=''
+          autoComplete='username'
+
         />
         <Input
           type='password'
@@ -51,8 +56,9 @@ const Register = () => {
           minLength={6}
           maxLength={30}
           label='Пароль'
-          defaultValue='password123456'
+          defaultValue=''
           errorDefault={true}
+          autoComplete='current-password'
         />
       </Form>
       <p className='section__text'>Уже зарегистрированы?<Link className="section__link" to="/signin">Войти</Link></p>

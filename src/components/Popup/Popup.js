@@ -16,11 +16,9 @@ const Popup = ({ name = "view-image", isOpen, setPopupOpened, children }) => {
     }
     return (
         <section className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`} onClick={handleClickByOverlay}>
-            <div className="popup__container popup__container_image">
+            <div className={`popup__container popup__container_${name}`}>
                 <button type="button" className="popup__close" onClick={() => setPopupOpened(false)} />
-                <figure className="popup__fig">
-                    {children}
-                </figure>
+                {children}
             </div>
 
         </section>

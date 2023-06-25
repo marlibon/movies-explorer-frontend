@@ -1,37 +1,52 @@
 // компонент страницы изменения профиля
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Profile.css';
+import { Link } from 'react-router-dom';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useContext } from 'react';
 
-const Profile = () => {
+const Profile = ({ onEditProfile, isLoading }) => {
   const [edit, setEdit] = useState(false);
   const inputRef = useRef(null);
-  const [values, setValues] = useState({ name: 'Виталий', email: 'email@yandex.ru' });
-  const [buttonEditDisabled, setButtonEditDisabled] = useState(true)
+  const { name, email } = useContext(CurrentUserContext);
+  const [values, setValues] = useState({ name, email });
+  const [buttonEditDisabled, setButtonEditDisabled] = useState(true);
   const handleEditClick = () => {
     setEdit(true);
     //Установка нулевой задержки гарантирует, что функция будет помещена в очередь выполнения после обновления компонента
     setTimeout(() => inputRef.current.focus(), 0);
   }
+  useEffect(() => {
+    values.name === name && values.email === email
+      ? setButtonEditDisabled(true)
+      : setButtonEditDisabled(false)
+  }, [values])
+
+  useEffect(() => {
+    setValues({ name, email })
+  }, [name, email])
 
   const handleChange = (e) => {
-    console.log(e.target.form['profile-email'].value !== values.email);
-    if (
-      e.target.form['profile-name'].value !== values.name
-      || e.target.form['profile-email'].value !== values.email) {
-      setButtonEditDisabled(false)
-    } else {
-      setButtonEditDisabled(true)
-
-    }
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+  const handleClickCancelBtn = () => {
+    setEdit(false)
+    setValues({ name, email })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onEditProfile({ email: values.email, name: values.name });
+    setEdit(false)
   }
   return (
     <section className='profile'>
-      <h1 className='profile__title'>Привет, Виталий!</h1>
+      <h1 className='profile__title'>Привет, {name}!</h1>
       <form
         className='profile__form'
         name='profile__form'
-        buttonText='Сохранить'
+        textForButton='Сохранить'
         onChange={handleChange}
+        onSubmit={handleSubmit}
       >
         <label className="profile__text">
           Имя
@@ -39,14 +54,14 @@ const Profile = () => {
             ref={inputRef}
             className='profile__form-input'
             type='text'
-            name='profile-name'
+            name='name'
             required
             minLength={2}
             maxLength={30}
-            id='profile-name'
+            id='name'
             placeholder='Имя'
             disabled={!edit}
-            defaultValue={values.name}
+            value={values.name}
           />
         </label>
         <label className="profile__text">
@@ -54,14 +69,14 @@ const Profile = () => {
           <input
             className='profile__form-input'
             type='email'
-            name='profile-email'
+            name='email'
             required
             minLength={2}
             maxLength={30}
-            id='profile-email'
+            id='email'
             placeholder='E-mail'
             disabled={!edit}
-            defaultValue={values.email}
+            value={values.email}
           />
         </label>
 
@@ -70,19 +85,19 @@ const Profile = () => {
             <button
               type='submit'
               className={`profile__form-submit ${buttonEditDisabled ? 'profile__form-submit_disabled' : ''}`}
-              disabled={buttonEditDisabled}
-            >Сохранить</button>
+              disabled={isLoading && buttonEditDisabled}
+            >{isLoading ? 'сохранение...' : 'Сохранить'}</button>
             <button
               type='button'
               className='profile__form-submit'
-              onClick={() => setEdit(false)}
+              onClick={handleClickCancelBtn}
             >Отменить</button>
           </div>
           : ''}
       </form>
       <nav className='profile__links'>
         {!edit ? <button type='button' className='profile__link' onClick={handleEditClick}>Редактировать</button> : ''}
-        <button type='button' className='profile__link profile__link_color_red'>Выйти из аккаунта</button>
+        <Link className='profile__link profile__link_color_red' to="/signout">Выйти из аккаунта</Link>
       </nav>
     </section >
   )

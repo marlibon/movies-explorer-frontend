@@ -31,7 +31,16 @@
     max-width: 282px;
   }
 }
-.popup__container_image {
+.popup__container_notify {
+  width: 70%;
+}
+.popup__notify-title {
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+.popup__container_view-image {
   max-width: 75vw;
   max-height: 75vh;
   min-width: 240px;

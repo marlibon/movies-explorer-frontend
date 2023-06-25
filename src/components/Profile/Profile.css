@@ -86,9 +86,9 @@
   opacity: 0.8;
   transition: all 0.5s ease;
   cursor: pointer;
+  text-decoration: none;
 }
 .profile__form-submit:hover {
-  text-decoration: underline;
   opacity: 1;
 }
 .profile__form-submit_disabled {
@@ -131,6 +131,8 @@
   cursor: pointer;
   transition: all 0.5s ease;
   font-family: var(--font-family);
+  text-align: center;
+  text-decoration: none;
 }
 .profile__link:hover {
   opacity: 0.8;

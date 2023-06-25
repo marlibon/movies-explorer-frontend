@@ -57,6 +57,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .header__link_profile {
   font-size: 14px;
   line-height: 16px;
@@ -75,6 +76,9 @@
 }
 .header__link_medium {
   font-weight: 400;
+}
+.active {
+  text-decoration: underline;
 }
 .header__link_type_btn {
   margin: 0;

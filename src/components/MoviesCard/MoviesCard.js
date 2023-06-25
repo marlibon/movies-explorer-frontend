@@ -1,18 +1,47 @@
 // компонент одной карточки фильма
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './MoviesCard.css';
 import LikeButton from '../LikeButton/LikeButton';
 import DeleteButton from '../DeleteButton/DeleteButton';
 import { url } from '../../utils/MoviesApi';
 import Popup from '../Popup/Popup';
 
-const MoviesCard = ({ movie, handleClickDeleteButton }) => {
-  const { image, nameRU, duration, liked, trailerLink } = movie;
-  const [isLiked, setIsliked] = useState(liked)
+const MoviesCard = ({ movie, handleClickDeleteButton, onDisLike, onLike, savedFilms, isSavedMovies }) => {
+  const [widthAndHeightFramePopupVideo, setWidthAndHeightFramePopupVideo] = useState({})
+  const {
+    _id,
+    id,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    nameRU,
+    nameEN, } = movie
+  const [isLiked, setIsliked] = useState(false)
+  const [isId, setIsId] = useState(null)
   const baseUrl = `${url.protocol}//${url.hostname}`;
+  const linkImage = baseUrl + image.url;
+  const thumbnail = baseUrl + image.formats.thumbnail.url;
   const [popupOpened, setPopupOpened] = useState(false)
   function handleClickLikeButton () {
-    setIsliked(!isLiked)
+    isLiked
+      ? onDisLike(isId, setIsliked)
+      : onLike({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        trailerLink,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId: id,
+        image: linkImage
+      }, setIsliked)
   }
 
   function convertMinutesToHoursAndMinutes (minutes) {
@@ -22,22 +51,52 @@ const MoviesCard = ({ movie, handleClickDeleteButton }) => {
     return `${hours}ч ${remainingMinutes}м`;
   }
 
+  function calculateProportionVideoFrame () {
+    const screenWidth = window.innerWidth;
+    let width, height;
+    const scale = 0.7
+    width = Math.round(screenWidth * scale);
+    height = Math.round(9 * screenWidth * scale / 16);
+    setWidthAndHeightFramePopupVideo({ width, height });
+  }
+
+  function handleResize () {
+    setTimeout(() => {
+      calculateProportionVideoFrame();
+    }, 500);
+  }
+
+  useEffect(() => {
+    calculateProportionVideoFrame();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [])
+  useEffect(() => {
+    const likedFilm = savedFilms.length
+      ? savedFilms.find((savedFilm) => savedFilm?.movieId === id)
+      : false
+    setIsliked(!!likedFilm)
+    setIsId(likedFilm?._id)
+  }, [savedFilms])
+
   return (
     <>
-      <li className='movies-card' onClick={() => { setPopupOpened(true) }}>
-        <img src={baseUrl + image.url} alt={nameRU} className='movies-card__image' />
+      <li className='movies-card'>
+        <img src={linkImage} alt={nameRU} className='movies-card__image' onClick={() => { setPopupOpened(true) }} />
         <div className='movies-card__column'>
           <h4 className='movies-card__title'>{nameRU}</h4>
 
-          {handleClickDeleteButton
-            ? <DeleteButton handleClickDeleteButton={() => handleClickDeleteButton(movie)} />
+          {isSavedMovies
+            ? <DeleteButton handleClickDeleteButton={() => onDisLike(isId || _id)} />
             : <LikeButton isLiked={isLiked} handleClickLikeButton={handleClickLikeButton} />}
         </div>
         <p className='movies-card__duration'>{convertMinutesToHoursAndMinutes(duration)}</p>
       </li>
       {popupOpened && <Popup isOpen={popupOpened} setPopupOpened={setPopupOpened}>
-        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/rRw_R46sYE8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
-        <iframe width={window.innerWidth * 0.7} height={9 * window.innerWidth * 0.7 / 16} src={`https://www.youtube.com/embed/${trailerLink.split("v=")[1]}`} frameborder="0" allowfullscreen title="YouTube video player"></iframe>
+        <figure className="popup__fig">
+          <iframe width={widthAndHeightFramePopupVideo.width} height={widthAndHeightFramePopupVideo.height} src={`https://www.youtube.com/embed/${trailerLink.split("v=")[1]}`} allowFullScreen title="YouTube video player"></iframe>
+        </figure>
       </Popup>}
     </>
   )

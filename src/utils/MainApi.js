@@ -13,35 +13,39 @@ POST /movies
 
 # удаляет сохранённый фильм по id
 DELETE /movies/_id */
-export const BASE_URL = 'https://api.marlibon.nomoredomains.rocks';
+// export const BASE_URL = 'https://api.marlibon.nomoredomains.rocks';
+export const BASE_URL = 'http://localhost:3000';
 
-export const checkToken = (token) => {
+const token = localStorage.getItem('token')
+const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token}`
+}
+export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-        },
+        headers,
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
         .then((data) => data)
 };
 
-export const register = (email, password) => {
+export const register = (email, password, name) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, name })
     })
-        .then((res => res.ok || res.status === 400 ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
+        .then((res => res.ok || res.status === 400 || res.status === 409 ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
 
 };
 
 export const authorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
+        // credentials: 'include',
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -50,5 +54,34 @@ export const authorize = (email, password) => {
         body: JSON.stringify({ email, password })
     })
         .then((res => res.ok || res.status === 401 ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
-
+};
+export const editProfile = ({ email, name }) => {
+    return fetch(`${BASE_URL}/users/me`, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({ email, name })
+    })
+        .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
+};
+export const createMovie = (movie) => {
+    return fetch(`${BASE_URL}/movies`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(movie)
+    })
+        .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
+};
+export const getSavedMovie = () => {
+    return fetch(`${BASE_URL}/movies`, {
+        method: 'GET',
+        headers,
+    })
+        .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
+};
+export const getDeleteMovie = (id) => {
+    return fetch(`${BASE_URL}/movies/${id}`, {
+        method: 'DELETE',
+        headers,
+    })
+        .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
 };

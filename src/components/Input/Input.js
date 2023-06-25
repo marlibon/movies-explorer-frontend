@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './Input.css';
 const Input = ({
-    errorDefault = false,
     autoFocus = false,
     type,
     name,
@@ -10,6 +9,7 @@ const Input = ({
     maxLength,
     label,
     defaultValue,
+    autoComplete
 }) => {
     const [error, setError] = useState(false)
     function handleChange (e) {
@@ -23,7 +23,7 @@ const Input = ({
             <input
                 className={`input
                 ${autoFocus ? " input_focus " : ""}
-                ${errorDefault ? " input_style_error " : ""}
+                ${error ? " input_style_error " : ""}
                 `}
                 type={type}
                 name={name}
@@ -35,9 +35,10 @@ const Input = ({
                 placeholder={label}
                 defaultValue={defaultValue || ""}
                 autoFocus={autoFocus}
+                autoComplete={autoComplete}
             />
             <span
-                className={`label__error ${error || errorDefault ? 'label__error_active' : ''}`}
+                className={`label__error ${error ? 'label__error_active' : ''}`}
             >{error ? error : 'Что-то пошло не так...'}
             </span>
         </label>

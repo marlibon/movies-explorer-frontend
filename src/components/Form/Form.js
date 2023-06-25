@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Form.css';
 
 const Form = ({
     name,
     onSubmit,
-    isFormValid,
-    buttonText,
+    textForButton,
     onChange,
-    isEditingBegun,
+    isLoading,
     children
 }) => {
-    const [validForm, setValidForm] = useState(true);
+    const [validForm, setValidForm] = useState(false);
+    const ref = useRef(null);
     function handleChange (e) {
-        setValidForm(e.target.validity.valid)
+        const isValidForm = ref.current.elements.length
+            ? [...ref.current.elements].some(element => element.validity.valid === false)
+            : false
+        setValidForm(!isValidForm)
         onChange(e)
     }
     function handleSubmit (e) {
@@ -25,9 +28,9 @@ const Form = ({
             name={name}
             id={name}
             className={`form form_type_${name}`}
-            noValidate
             onChange={handleChange}
             onSubmit={handleSubmit}
+            ref={ref}
         >
             <div>
                 {children}
@@ -36,9 +39,9 @@ const Form = ({
                 type="submit"
                 form={name}
                 className={`form__btn-submit`}
-                disabled={!validForm}
+                disabled={!validForm || isLoading ? true : false}
             >
-                {buttonText}
+                {isLoading ? 'Загрузка...' : textForButton}
             </button>
         </form>
     )

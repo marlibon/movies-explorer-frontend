@@ -5,7 +5,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import { useEffect, useState } from 'react';
 
-const MoviesCardList = ({ films, isLoading, remainingFilms, viewStillFilms, handleClickDeleteButton }) => {
+const MoviesCardList = ({ films, savedFilms, isLoading, remainingFilms, viewStillFilms, handleClickDeleteButton, onLike, onDisLike, isSavedMovies }) => {
   // временная ручная установка прелоадера чтобы показать момент загрузки
   useEffect(() => {
     viewStillFilms && viewStillFilms()
@@ -15,9 +15,9 @@ const MoviesCardList = ({ films, isLoading, remainingFilms, viewStillFilms, hand
     <Section theme="movies" >
       {films.length ? (
         <ul className='movies-card-list'>
-          {films.map((movie, index) => <MoviesCard movie={movie} key={index} handleClickDeleteButton={handleClickDeleteButton} />)}
+          {films.map((movie, index) => <MoviesCard movie={movie} savedFilms={savedFilms} key={index} handleClickDeleteButton={handleClickDeleteButton} onDisLike={onDisLike} onLike={onLike} isSavedMovies={isSavedMovies} />)}
         </ul>
-      ) : !isLoading ? <h3>Список фильмов пуст</h3> : ''}
+      ) : !isLoading ? <h3>Ничего не найдено</h3> : ''}
 
       {isLoading ? <Preloader /> : ""}
       {remainingFilms?.length ? <button className='movies-card-list-btn' onClick={viewStillFilms}>Ещё</button> : ''}

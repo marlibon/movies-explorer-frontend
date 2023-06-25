@@ -7,23 +7,25 @@ import Section from '../Section/Section';
 import './Login.css';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin, isLoading }) => {
   const [values, setValues] = useState({})
-  function onSubmit () {
-  }
+  // надо доработать валидацию
   function handleChange (e) {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
-
+  function handleSubmit (event) {
+    onLogin(values.email, values.password)
+  }
   return (
     <Section theme='auth'>
       <Logo />
       <h2 className='section__title'>Рады видеть!</h2>
       <Form
         name='login'
-        buttonText='Войти'
-        onSubmit={onSubmit}
+        textForButton='Войти'
+        onSubmit={handleSubmit}
         onChange={handleChange}
+        isLoading={isLoading}
       >
         <Input
           type='email'
@@ -32,7 +34,8 @@ const Login = () => {
           minLength={6}
           maxLength={30}
           label='E-mail'
-          defaultValue='pochta@yandex.ru'
+          defaultValue=''
+          autoComplete='username'
         />
         <Input
           type='password'
@@ -41,6 +44,7 @@ const Login = () => {
           minLength={6}
           maxLength={30}
           label='Пароль'
+          autoComplete='current-password'
         />
       </Form>
       <p className='section__text'>Ещё не зарегистрированы?<Link className="section__link" to="/signup">Регистрация</Link></p>
