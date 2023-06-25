@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // компонент, который управляет отрисовкой карточек фильмов на страницу и их количеством
 import './MoviesCardList.css';
 import Section from '../Section/Section';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const MoviesCardList = ({ films, savedFilms, isLoading, remainingFilms, viewStillFilms, handleClickDeleteButton, onLike, onDisLike, isSavedMovies }) => {
   // временная ручная установка прелоадера чтобы показать момент загрузки

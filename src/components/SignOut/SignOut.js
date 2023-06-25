@@ -7,8 +7,11 @@ const SignOut = ({ onLoggedIn }) => {
     useEffect(() => {
         onLoggedIn(false);
         localStorage.removeItem('token');
-        localStorage.removeItem('email');
-        navigate('/signin', { replace: true });
+        // удаляю фильтры и фильмы, т.к. так можно увидеть настройки другого пользователя на этом же компьютере
+        localStorage.removeItem('dataForm');
+        localStorage.removeItem('savedMovies');
+        localStorage.removeItem('filteredFilms');
+        navigate('/', { replace: true });
 
     }, [])
     return (

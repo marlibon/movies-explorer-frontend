@@ -1,15 +1,18 @@
 // компонент страницы с сохранёнными карточками фильмов
 import './SavedMovies.css';
-import { useEffect, useState } from 'react';
-import Footer from '../Footer/Footer';
-import Filter from '../Filter/Filter';
+import { useEffect, useState } from "react";
+import FilterSavedMovies from '../FilterSavedMovies/FilterSavedMovies';
 
 const SavedMovies = ({ onError }) => {
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    document.title = 'Сохраненные фильмы';
+  }, []);
+
   return (
     <>
-      <Filter setIsLoading={setIsLoading} isSavedMovies={true} sLoading={isLoading} onError={onError} />
+      <FilterSavedMovies setIsLoading={setIsLoading} isSavedMovies={true} isLoading={isLoading} onError={onError} />
     </>
   )
 }

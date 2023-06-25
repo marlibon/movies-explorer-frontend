@@ -9,7 +9,9 @@ const Input = ({
     maxLength,
     label,
     defaultValue,
-    autoComplete
+    autoComplete,
+    pattern,
+    placeholder
 }) => {
     const [error, setError] = useState(false)
     function handleChange (e) {
@@ -32,10 +34,11 @@ const Input = ({
                 maxLength={maxLength}
                 id={name}
                 onChange={handleChange}
-                placeholder={label}
+                placeholder={placeholder}
                 defaultValue={defaultValue || ""}
                 autoFocus={autoFocus}
                 autoComplete={autoComplete}
+                pattern={pattern}
             />
             <span
                 className={`label__error ${error ? 'label__error_active' : ''}`}

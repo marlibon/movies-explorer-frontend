@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // компонент одной карточки фильма
 import { useEffect, useState } from 'react';
 import './MoviesCard.css';
@@ -18,13 +19,14 @@ const MoviesCard = ({ movie, handleClickDeleteButton, onDisLike, onLike, savedFi
     description,
     image,
     trailerLink,
+    liked,
     nameRU,
     nameEN, } = movie
-  const [isLiked, setIsliked] = useState(false)
+  const [isLiked, setIsliked] = useState(liked ? true : false)
   const [isId, setIsId] = useState(null)
   const baseUrl = `${url.protocol}//${url.hostname}`;
-  const linkImage = baseUrl + image.url;
-  const thumbnail = baseUrl + image.formats.thumbnail.url;
+  const linkImage = typeof (movie.image) === 'string' ? movie.image : baseUrl + image.url;
+  const thumbnail = movie.thumbnail ? movie.thumbnail : baseUrl + image?.formats?.thumbnail?.url;
   const [popupOpened, setPopupOpened] = useState(false)
   function handleClickLikeButton () {
     isLiked

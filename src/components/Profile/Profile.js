@@ -11,6 +11,11 @@ const Profile = ({ onEditProfile, isLoading }) => {
   const { name, email } = useContext(CurrentUserContext);
   const [values, setValues] = useState({ name, email });
   const [buttonEditDisabled, setButtonEditDisabled] = useState(true);
+
+  useEffect(() => {
+    document.title = 'Информация о пользователе';
+  }, []);
+
   const handleEditClick = () => {
     setEdit(true);
     //Установка нулевой задержки гарантирует, что функция будет помещена в очередь выполнения после обновления компонента

@@ -13,8 +13,8 @@ POST /movies
 
 # удаляет сохранённый фильм по id
 DELETE /movies/_id */
-// export const BASE_URL = 'https://api.marlibon.nomoredomains.rocks';
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://api.marlibon.nomoredomains.rocks';
+// export const BASE_URL = 'http://localhost:3000';
 
 const token = localStorage.getItem('token')
 const headers = {
@@ -27,7 +27,6 @@ export const checkToken = () => {
         headers,
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
-        .then((data) => data)
 };
 
 export const register = (email, password, name) => {

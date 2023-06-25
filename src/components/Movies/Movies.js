@@ -7,6 +7,10 @@ import Filter from '../Filter/Filter';
 const Movies = ({ onError }) => {
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    document.title = 'Фильмы';
+  }, []);
+
   function loadFilms () {
     return getAllMovies()
       .then((data) => {

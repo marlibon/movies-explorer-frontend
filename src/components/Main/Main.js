@@ -5,7 +5,12 @@ import AboutProject from '../AboutProject/AboutProject'
 import Techs from '../Techs/Techs'
 import AboutMe from '../AboutMe/AboutMe'
 import Footer from '../Footer/Footer'
+import { useEffect } from 'react';
 const Main = () => {
+  useEffect(() => {
+    document.title = 'О проекте';
+  }, []);
+
   return (
     <main className='main'>
       <Promo />

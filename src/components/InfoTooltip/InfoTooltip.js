@@ -9,7 +9,7 @@ const InfoTooltip = ({ name, isOpen, setPopupOpened, statusCompleted, errorMessa
     useEffect(() => {
 
         if (statusCompleted) {
-            setContent({ image: imageSuccess, text: 'Вы успешно зарегистрировались! Сейчас вы будете переадресованы на страницу "Фильмы"' })
+            setContent({ image: imageSuccess, text: statusCompleted })
         }
         if (!statusCompleted && (typeof errorMessage === "boolean" || !errorMessage)) {
             setContent({ image: imageFail, text: 'Что-то пошло не так! Попробуйте ещё раз.' })

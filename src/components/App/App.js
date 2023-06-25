@@ -14,6 +14,8 @@ import NotFound from '../NotFound/NotFound';
 import Header from '../Header/Header';
 import { checkToken, authorize, register, editProfile } from "../../utils/MainApi";
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Preloader from '../Preloader/Preloader';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -44,11 +46,16 @@ const App = () => {
         if (data.token) {
           localStorage.setItem('token', data.token)
           setLoggedIn(true);
-          navigate('/movies', { replace: true });
+          setStatusCompleted('Вы успешно вошли! Сейчас вы будете переадресованы на страницу "Фильмы"');
+          setIsNotifyPopupOpen(true);
+
+          setTimeout(() => {
+            navigate('/movies', { replace: true });
+            setIsNotifyPopupOpen(false)
+          }, 2000)
         }
         else {
           throw new Error(data.message || 'Ошибка! Что-то пошло не так');
-
         }
       })
       .catch(err => {
@@ -73,7 +80,7 @@ const App = () => {
           throw new Error(res.error);
         }
         setLoggedIn(true)
-        setStatusCompleted(true);
+        setStatusCompleted('Вы успешно зарегистрировались! Сейчас вы будете переадресованы на страницу "Фильмы"');
         setIsNotifyPopupOpen(true);
         setTimeout(() => {
           navigate('/movies', { replace: true });
@@ -94,28 +101,39 @@ const App = () => {
   }
 
   useEffect(() => {
-    checkToken()
+    const token = localStorage.getItem('token')
+    loggedIn === false && token && setIsLoading(true)
+    loggedIn === false && token && checkToken()
       .then((data) => {
+        setIsLoading(true)
         setLoggedIn(true)
         const { email, name } = data
         setСurrentUser({ email, name })
+
       })
-      .catch(handleError)
+      .catch(error => {
+        // setLoggedIn(false)
+        console.error(error)
+      })
+      .finally(() => setIsLoading(false))
   }, [loggedIn])
+
+  if (isLoading) return (<Preloader />)
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
         {showHeader && <Header menuOpened={menuOpened} handleMenuOpened={handleMenuOpened} loggedIn={loggedIn} />}
         <Routes>
-          {/* <Route path="/"
-          element={<ProtectedRoute
-            element={Main}
-          />}
-        /> */}
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies onError={handleError} />} />
-          <Route path="/saved-movies" element={<SavedMovies onError={handleError} />} />
-          <Route path="/profile" element={<Profile onEditProfile={handleEditProfile} isLoading={isLoading} />} />
+          <Route path="/movies"
+            element={<ProtectedRoute element={Movies} loggedIn={loggedIn} onError={handleError} />}
+          />
+          <Route path="/saved-movies"
+            element={<ProtectedRoute element={SavedMovies} loggedIn={loggedIn} onError={handleError} />}
+          />
+          <Route path="/profile"
+            element={<ProtectedRoute element={Profile} loggedIn={loggedIn} onEditProfile={handleEditProfile} isLoading={isLoading} />}
+          />
           <Route path="/signin" element={<Login onLogin={handleLogin} isLoading={isLoading} />} />
           <Route path="/signup" element={<Register onRegister={handleRegister} isLoading={isLoading} />} />
           <Route path="/signout" element={<SignOut onLoggedIn={setLoggedIn} />} />

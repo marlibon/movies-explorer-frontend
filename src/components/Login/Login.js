@@ -9,11 +9,17 @@ import { Link } from 'react-router-dom';
 
 const Login = ({ onLogin, isLoading }) => {
   const [values, setValues] = useState({})
-  // надо доработать валидацию
+
+  useEffect(() => {
+    document.title = 'Авторизация';
+  }, []);
+
+
   function handleChange (e) {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
   function handleSubmit (event) {
+    event.preventDefault()
     onLogin(values.email, values.password)
   }
   return (

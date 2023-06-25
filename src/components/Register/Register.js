@@ -9,6 +9,12 @@ import { Link } from 'react-router-dom';
 
 const Register = ({ onRegister }) => {
   const [values, setValues] = useState({})
+
+  useEffect(() => {
+    document.title = 'Регистрация';
+  }, []);
+
+
   function onSubmit (event) {
     event.preventDefault();
     const { email, password, name } = values;
@@ -37,6 +43,8 @@ const Register = ({ onRegister }) => {
           label='Имя'
           defaultValue=''
           autoFocus={true}
+          pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
+          placeholder='Ваше имя (русские и латинские символы, пробел, тире)'
         />
         <Input
           type='email'
@@ -47,6 +55,7 @@ const Register = ({ onRegister }) => {
           label='E-mail'
           defaultValue=''
           autoComplete='username'
+          placeholder='Ваш емейл в виде email@mail.ru'
 
         />
         <Input
@@ -59,6 +68,8 @@ const Register = ({ onRegister }) => {
           defaultValue=''
           errorDefault={true}
           autoComplete='current-password'
+          placeholder='Пароль от 6 символов'
+
         />
       </Form>
       <p className='section__text'>Уже зарегистрированы?<Link className="section__link" to="/signin">Войти</Link></p>

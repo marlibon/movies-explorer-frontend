@@ -1,5 +1,5 @@
 // компонент, который отрисовывает шапку сайта на страницу
-import { Link, NavLink, Routes, Route } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import Logo from '../Logo/Logo';
 import './Header.css';
@@ -24,7 +24,7 @@ const Header = ({ menuOpened, handleMenuOpened, loggedIn }) => {
           <nav className='header__nav-links header__nav-links_hidden_tablet-mobile'>
             <Logo />
             <Link to="/movies" className='header__link'>Фильмы</Link>
-            <NavLink to="/saved-movies" className='header__link header__link_medium' activeClassName="header__link_active" >Сохранённые фильмы</NavLink>
+            <NavLink to="/saved-movies" className='header__link header__link_medium' >Сохранённые фильмы</NavLink>
           </nav>
           <nav className='header__nav-links header__nav-links_hidden_tablet-mobile'>
             <Link to="/profile" className='header__link header__link_profile' title={`Пользователь: ${name}, почта ${email}`}>Аккаунт
