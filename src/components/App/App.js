@@ -39,61 +39,45 @@ const App = () => {
     setIsNotifyPopupOpen(true);
     console.log(err)
   }
-  function handleLogin (email, password) {
-    setIsLoading(true)
-    authorize(email, password)
+
+  function handleAuth (email, password, name, authFunction) {
+    setIsLoading(true);
+    authFunction(email, password, name)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem('token', data.token)
+          localStorage.setItem('token', data.token);
           setLoggedIn(true);
           setStatusCompleted('Вы успешно вошли! Сейчас вы будете переадресованы на страницу "Фильмы"');
           setIsNotifyPopupOpen(true);
-
+          const { email, name } = data;
+          setСurrentUser({ email, name });
           setTimeout(() => {
             navigate('/movies', { replace: true });
-            setIsNotifyPopupOpen(false)
-          }, 2000)
+            setIsNotifyPopupOpen(false);
+          }, 2000);
+        }
+        else if (data.message || data.error) {
+          throw new Error(data.message || data.error);
         }
         else {
-          throw new Error(data.message || 'Ошибка! Что-то пошло не так');
+          throw new Error('Ошибка! Что-то пошло не так');
         }
       })
       .catch(err => {
-        setErrorMessage(err.message || 'Ошибка! Что-то пошло не так')
+        setErrorMessage(err.message || 'Ошибка! Что-то пошло не так');
         setStatusCompleted(false);
         setIsNotifyPopupOpen(true);
-        console.log(err)
+        console.log(err);
       })
-      .finally(() => setIsLoading(false))
-
+      .finally(() => setIsLoading(false));
   }
-  function handleRegister ({ email, password, name }) {
-    setIsLoading(true)
-    register(email, password, name)
-      .then((res) => {
-        if (res.message) {
-          setErrorMessage(res.message);
-          throw new Error(res.message);
-        }
-        if (res.error) {
-          setErrorMessage(res.error);
-          throw new Error(res.error);
-        }
-        if (res.token) {
-          setLoggedIn(true)
-          setStatusCompleted('Вы успешно зарегистрировались! Сейчас вы будете переадресованы на страницу "Фильмы"');
-          setIsNotifyPopupOpen(true);
-          setTimeout(() => {
-            navigate('/movies', { replace: true });
-          }, 2000)
-          localStorage.setItem('token', res.token)
-          const { email, name } = res;
-          setСurrentUser({ email, name })
-        }
 
-      })
-      .catch(handleError)
-      .finally(() => setIsLoading(false))
+  function handleLogin (email, password) {
+    handleAuth(email, password, null, authorize);
+  }
+
+  function handleRegister ({ email, password, name }) {
+    handleAuth(email, password, name, register);
   }
   function handleEditProfile ({ email, name }) {
     setIsLoading(true)

@@ -4,15 +4,15 @@ import './Portfolio.css';
 const Portfolio = () => {
   const arrayPortfolioList = [
     {
-      link: 'https://marlibon.github.io/how-to-learn/',
+      link: 'https://zagriev.nomoredomains.monster/how-to-learn/',
       name: 'Статичный сайт',
     },
     {
-      link: 'https://marlibon.github.io/mesto-react/',
+      link: 'https://marlibon.github.io/russian-travel/',
       name: 'Адаптивный сайт',
     },
     {
-      link: 'https://marlibon.nomoredomains.monster',
+      link: 'https://zagriev.nomoredomains.monster',
       name: 'Одностраничное приложение',
     },
   ]

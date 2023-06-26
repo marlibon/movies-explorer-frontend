@@ -117,6 +117,7 @@ const Filter = ({ isLoading, setIsLoading, onError }) => {
 
     // фукнция сабмита, загружает 2 базы (из 2 источников) и сразу фильтрует, сохраняет в стейт
     const handleSubmit = (event) => {
+        console.log(localStorage.getItem('token'));
         event && event.preventDefault();
         setIsLoading(true);
         Promise.all([getSavedMovie(), getAllMovies()])

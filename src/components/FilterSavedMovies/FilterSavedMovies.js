@@ -38,6 +38,7 @@ const FilterSavedMovies = ({ isLoading, setIsLoading, onError, isSavedMovies }) 
                 setIsliked && setIsliked(false)
                 setFilms(newSavedFilms)
                 setSavedFilms(newSavedFilms);
+                localStorage.setItem('savedMovies', JSON.stringify(newSavedFilms))
             })
             .catch(onError)
             .finally(() => document.body.style.cursor = 'default')
@@ -96,6 +97,8 @@ const FilterSavedMovies = ({ isLoading, setIsLoading, onError, isSavedMovies }) 
         setIsLoading(true);
         const filteredSavedFilms = filterMovies({ allFilms: savedFilms, searchText: dataForm[nameInput], filterShortFilms: dataForm[nameCheckboxShortFilms] })
         setFilteredFilms(filteredSavedFilms)
+        setIsLoading(false);
+
     }
 
     // отслеживание формы и запись в стейт
