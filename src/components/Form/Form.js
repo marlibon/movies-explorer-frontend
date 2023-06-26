@@ -4,7 +4,7 @@ import './Form.css';
 const Form = ({
     name,
     onSubmit,
-    textForButton,
+    textforbutton,
     onChange,
     isLoading,
     children
@@ -41,7 +41,7 @@ const Form = ({
                 className={`form__btn-submit`}
                 disabled={!validForm || isLoading ? true : false}
             >
-                {isLoading ? 'Загрузка...' : textForButton}
+                {isLoading ? 'Загрузка...' : textforbutton}
             </button>
         </form>
     )

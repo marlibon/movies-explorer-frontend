@@ -49,7 +49,7 @@ const Profile = ({ onEditProfile, isLoading }) => {
       <form
         className='profile__form'
         name='profile__form'
-        textForButton='Сохранить'
+        textforbutton='Сохранить'
         onChange={handleChange}
         onSubmit={handleSubmit}
       >

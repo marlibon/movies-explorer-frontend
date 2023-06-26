@@ -30,7 +30,7 @@ const Register = ({ onRegister }) => {
       <h2 className='section__title'>Добро пожаловать!</h2>
       <Form
         name='login'
-        textForButton='Зарегистрироваться'
+        textforbutton='Зарегистрироваться'
         onSubmit={onSubmit}
         onChange={handleChange}
       >
@@ -44,7 +44,7 @@ const Register = ({ onRegister }) => {
           defaultValue=''
           autoFocus={true}
           pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
-          placeholder='Ваше имя (русские и латинские символы, пробел, тире)'
+          placeholder='Ваше имя (рус/латинские символы, " ", "-")'
         />
         <Input
           type='email'
@@ -55,8 +55,8 @@ const Register = ({ onRegister }) => {
           label='E-mail'
           defaultValue=''
           autoComplete='username'
-          placeholder='Ваш емейл в виде email@mail.ru'
-
+          placeholder='Ваш емейл в формате email@mail.ru'
+          pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"
         />
         <Input
           type='password'

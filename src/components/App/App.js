@@ -79,12 +79,18 @@ const App = () => {
           setErrorMessage(res.error);
           throw new Error(res.error);
         }
-        setLoggedIn(true)
-        setStatusCompleted('Вы успешно зарегистрировались! Сейчас вы будете переадресованы на страницу "Фильмы"');
-        setIsNotifyPopupOpen(true);
-        setTimeout(() => {
-          navigate('/movies', { replace: true });
-        }, 2000)
+        if (res.token) {
+          setLoggedIn(true)
+          setStatusCompleted('Вы успешно зарегистрировались! Сейчас вы будете переадресованы на страницу "Фильмы"');
+          setIsNotifyPopupOpen(true);
+          setTimeout(() => {
+            navigate('/movies', { replace: true });
+          }, 2000)
+          localStorage.setItem('token', res.token)
+          const { email, name } = res;
+          setСurrentUser({ email, name })
+        }
+
       })
       .catch(handleError)
       .finally(() => setIsLoading(false))

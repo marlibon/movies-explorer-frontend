@@ -19,9 +19,6 @@ const Filter = ({ isLoading, setIsLoading, onError }) => {
     const [loadMoreCount, setLoadMoreCount] = useState(null); //  сколько карточек вывести при нажатии на кнопку Еще в текущей ширине экрана
     const [qtyViewCards, setQtyViewCards] = useState(null); //сколько карточек отображать в текущей ширине экрана
 
-    useEffect(() => {
-        console.log(changeStateCheckbox);
-    }, [changeStateCheckbox])
     // для работы с хранилищем. при монтировании берем данные с хранилища
     useEffect(() => {
         const filteredFilms = localStorage.getItem('filteredFilms') ? JSON.parse(localStorage.getItem('filteredFilms')) : []

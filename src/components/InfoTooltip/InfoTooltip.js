@@ -22,7 +22,7 @@ const InfoTooltip = ({ name, isOpen, setPopupOpened, statusCompleted, errorMessa
 
     return (
         <Popup name="notify" isOpen={isOpen} setPopupOpened={setPopupOpened}>
-            <img className="popup__notify-image" src={content.image} alt={content.text} />
+            <img className="popup__notify-image" src={content.image} alt="статус запроса" />
             <h3 className='popup__notify-title'>{content.text}</h3>
         </Popup>
     )

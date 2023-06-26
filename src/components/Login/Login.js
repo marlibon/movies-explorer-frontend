@@ -28,7 +28,7 @@ const Login = ({ onLogin, isLoading }) => {
       <h2 className='section__title'>Рады видеть!</h2>
       <Form
         name='login'
-        textForButton='Войти'
+        textforbutton='Войти'
         onSubmit={handleSubmit}
         onChange={handleChange}
         isLoading={isLoading}
@@ -42,6 +42,8 @@ const Login = ({ onLogin, isLoading }) => {
           label='E-mail'
           defaultValue=''
           autoComplete='username'
+          placeholder='Ваш емейл в формате email@mail.ru'
+          pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"
         />
         <Input
           type='password'
