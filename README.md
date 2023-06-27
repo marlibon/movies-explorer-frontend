@@ -4,4 +4,4 @@
 
 [использованный макет для верстки](https://disk.yandex.ru/d/wIaogTtMyw_BQg)
 [ссылка на проект на сервере](https://marlibon.nomoredomains.rocks/)
-[ссылка на пулл-реквест](https://github.com/marlibon/movies-explorer-frontend/pull/5)
+[ссылка на пулл-реквест](https://github.com/marlibon/movies-explorer-frontend/pull/6)

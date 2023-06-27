@@ -16,15 +16,17 @@ DELETE /movies/_id */
 export const BASE_URL = 'https://api.marlibon.nomoredomains.rocks';
 // export const BASE_URL = 'http://localhost:3000';
 
-const token = localStorage.getItem('token')
-const headers = {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${token || localStorage.getItem('token')}`
+const getHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+    }
 }
 export const checkToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
-        headers,
+        headers: getHeaders(),
         credentials: 'include'
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
@@ -58,7 +60,7 @@ export const authorize = (email, password) => {
 export const editProfile = ({ email, name }) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'PATCH',
-        headers,
+        headers: getHeaders(),
         body: JSON.stringify({ email, name })
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
@@ -66,7 +68,7 @@ export const editProfile = ({ email, name }) => {
 export const createMovie = (movie) => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'POST',
-        headers,
+        headers: getHeaders(),
         body: JSON.stringify(movie)
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
@@ -74,14 +76,14 @@ export const createMovie = (movie) => {
 export const getSavedMovie = () => {
     return fetch(`${BASE_URL}/movies`, {
         method: 'GET',
-        headers,
+        headers: getHeaders(),
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
 };
 export const getDeleteMovie = (id) => {
     return fetch(`${BASE_URL}/movies/${id}`, {
         method: 'DELETE',
-        headers,
+        headers: getHeaders(),
     })
         .then((res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)))
 };
