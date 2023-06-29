@@ -21,12 +21,12 @@ const Register = ({ onRegister, loggedIn }) => {
     }
   }, [loggedIn]);
 
-  function onSubmit (event) {
+  function onSubmit(event) {
     event.preventDefault();
     const { email, password, name } = values;
     onRegister({ email, password, name });
   }
-  function handleChange (e) {
+  function handleChange(e) {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
 

@@ -21,10 +21,10 @@ const Login = ({ onLogin, isLoading, loggedIn }) => {
     }
   }, [loggedIn]);
 
-  function handleChange (e) {
+  function handleChange(e) {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
-  function handleSubmit (event) {
+  function handleSubmit(event) {
     event.preventDefault();
     onLogin(values.email, values.password);
   }

@@ -31,11 +31,13 @@ const Profile = ({ onEditProfile, isLoading }) => {
       return true;
     });
     if (isValid) {
-      setButtonEditDisabled(false)
+      setButtonEditDisabled(false);
     } else {
-      setButtonEditDisabled(true)
+      setButtonEditDisabled(true);
     }
-    if (values.name === name && values.email === email) { setButtonEditDisabled(true) }
+    if (values.name === name && values.email === email) {
+      setButtonEditDisabled(true);
+    }
   }, [values]);
 
   useEffect(() => {

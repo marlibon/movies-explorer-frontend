@@ -6,11 +6,7 @@ const SignOut = ({ onLoggedIn }) => {
 
   useEffect(() => {
     onLoggedIn(false);
-    localStorage.removeItem('token');
-    // удаляю фильтры и фильмы, т.к. так можно увидеть настройки другого пользователя на этом же компьютере
-    localStorage.removeItem('dataForm');
-    localStorage.removeItem('savedFilms');
-    localStorage.removeItem('filteredFilms');
+    localStorage.clear();
     navigate('/', { replace: true });
   }, []);
   return <div>выходим...</div>;

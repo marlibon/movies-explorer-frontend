@@ -3,7 +3,15 @@ import './SavedMovies.css';
 import { useEffect, useState } from 'react';
 import FilterSavedMovies from '../FilterSavedMovies/FilterSavedMovies';
 
-const SavedMovies = ({ isLoading, setIsLoading, savedFilms, setSavedFilms, loadSavedMoviesList, onDislikeMovie, onError }) => {
+const SavedMovies = ({
+  isLoading,
+  setIsLoading,
+  savedFilms,
+  setSavedFilms,
+  loadSavedMoviesList,
+  onDislikeMovie,
+  onError
+}) => {
   useEffect(() => {
     document.title = 'Сохраненные фильмы';
   }, []);
