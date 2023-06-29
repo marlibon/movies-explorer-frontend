@@ -6,4 +6,4 @@
 
 2. [ссылка на проект на сервере](https://marlibon.nomoredomains.rocks/);
 
-3. [ссылка на пулл-реквест](https://github.com/marlibon/movies-explorer-frontend/pull/7)
+3. [ссылка на пулл-реквест](https://github.com/marlibon/movies-explorer-frontend/pull/8)

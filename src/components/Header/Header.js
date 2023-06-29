@@ -43,14 +43,14 @@ const Header = ({ menuOpened, handleMenuOpened, loggedIn }) => {
             </NavLink>
           </nav>
           <nav className="header__nav-links header__nav-links_hidden_tablet-mobile">
-            <Link
+            <NavLink
               to="/profile"
               className="header__link header__link_profile"
               title={`Пользователь: ${name}, почта ${email}`}
             >
               Аккаунт
               <div className="header__nav-link-icon"></div>
-            </Link>
+            </NavLink>
           </nav>
           <nav className="header__nav-links header__nav-links_hidden_pc">
             <Logo />
