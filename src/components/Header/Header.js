@@ -30,12 +30,14 @@ const Header = ({ menuOpened, handleMenuOpened, loggedIn }) => {
         <>
           <nav className="header__nav-links header__nav-links_hidden_tablet-mobile">
             <Logo />
-            <Link to="/movies" className="header__link">
+            <NavLink
+              to="/movies" className="header__link"
+            >
               Фильмы
-            </Link>
+            </NavLink>
             <NavLink
               to="/saved-movies"
-              className="header__link header__link_medium"
+              className="header__link"
             >
               Сохранённые фильмы
             </NavLink>
@@ -53,9 +55,8 @@ const Header = ({ menuOpened, handleMenuOpened, loggedIn }) => {
           <nav className="header__nav-links header__nav-links_hidden_pc">
             <Logo />
             <button
-              className={`header__btn-menu ${
-                menuOpened ? 'header__btn-menu_close' : ''
-              }`}
+              className={`header__btn-menu ${menuOpened ? 'header__btn-menu_close' : ''
+                }`}
               onClick={() => handleMenuOpened(!menuOpened)}
             ></button>
           </nav>
