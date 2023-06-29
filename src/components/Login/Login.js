@@ -5,59 +5,70 @@ import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
 import Section from '../Section/Section';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin, isLoading }) => {
-  const [values, setValues] = useState({})
+const Login = ({ onLogin, isLoading, loggedIn }) => {
+  const [values, setValues] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Авторизация';
   }, []);
 
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/movies', { replace: true });
+    }
+  }, [loggedIn]);
 
   function handleChange (e) {
-    setValues({ ...values, [e.target.name]: e.target.value })
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
   function handleSubmit (event) {
-    event.preventDefault()
-    onLogin(values.email, values.password)
+    event.preventDefault();
+    onLogin(values.email, values.password);
   }
   return (
-    <Section theme='auth'>
+    <Section theme="auth">
       <Logo />
-      <h2 className='section__title'>Рады видеть!</h2>
+      <h2 className="section__title">Рады видеть!</h2>
       <Form
-        name='login'
-        textforbutton='Войти'
+        name="login"
+        textforbutton="Войти"
         onSubmit={handleSubmit}
         onChange={handleChange}
         isLoading={isLoading}
       >
         <Input
-          type='email'
-          name='email'
+          type="email"
+          name="email"
           required={true}
           minLength={6}
           maxLength={30}
-          label='E-mail'
-          defaultValue=''
-          autoComplete='username'
-          placeholder='Ваш емейл в формате email@mail.ru'
+          label="E-mail"
+          defaultValue=""
+          autoComplete="username"
+          placeholder="Ваш емейл в формате email@mail.ru"
           pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"
         />
         <Input
-          type='password'
-          name='password'
+          type="password"
+          name="password"
           required={true}
           minLength={6}
           maxLength={30}
-          label='Пароль'
-          autoComplete='current-password'
+          label="Пароль"
+          autoComplete="current-password"
         />
       </Form>
-      <p className='section__text'>Ещё не зарегистрированы?<Link className="section__link" to="/signup">Регистрация</Link></p>
+      <p className="section__text">
+        Ещё не зарегистрированы?
+        <Link className="section__link" to="/signup">
+          Регистрация
+        </Link>
+      </p>
     </Section>
-  )
-}
+  );
+};
 
 export default Login;

@@ -1,20 +1,27 @@
 // компонент страницы с сохранёнными карточками фильмов
 import './SavedMovies.css';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import FilterSavedMovies from '../FilterSavedMovies/FilterSavedMovies';
 
-const SavedMovies = ({ onError }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
+const SavedMovies = ({ isLoading, setIsLoading, savedFilms, setSavedFilms, loadSavedMoviesList, onDislikeMovie, onError }) => {
   useEffect(() => {
     document.title = 'Сохраненные фильмы';
   }, []);
 
   return (
     <>
-      <FilterSavedMovies setIsLoading={setIsLoading} isSavedMovies={true} isLoading={isLoading} onError={onError} />
+      <FilterSavedMovies
+        savedFilms={savedFilms}
+        setSavedFilms={setSavedFilms}
+        loadSavedMoviesList={loadSavedMoviesList}
+        isSavedMovies={true}
+        onDislikeMovie={onDislikeMovie}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        onError={onError}
+      />
     </>
-  )
-}
+  );
+};
 
 export default SavedMovies;

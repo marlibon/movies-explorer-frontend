@@ -91,11 +91,12 @@
 .profile__form-submit:hover {
   opacity: 1;
 }
-.profile__form-submit_disabled {
+.profile__form-submit:disabled {
   background-color: white;
   color: black;
   border: 1px solid black;
   opacity: 0.8;
+  cursor: default;
 }
 .profile__form-input {
   text-align: right;
