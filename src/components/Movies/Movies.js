@@ -1,31 +1,38 @@
-// компонент страницы с поиском по фильмам
-import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { getAllMovies } from '../../utils/MoviesApi';
 import './Movies.css';
-import { useState } from 'react';
-import Footer from '../Footer/Footer';
-import initialFilms from '../../utils/initialFilms.json';
 
-const Movies = () => {
-  const [films, setFilms] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const remainingFilms = initialFilms.slice(films.length);
+import { useEffect, useState } from 'react';
+import Filter from '../Filter/Filter';
 
-  function viewStillFilms () {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      setFilms([...films, ...remainingFilms.slice(0, 5)])
-    }, 2000)
-  }
+const Movies = ({
+  initialFilms,
+  setInitialFilms,
+  loadAllMoviesList,
+  savedFilms,
+  setSavedFilms,
+  onError,
+  isLoading,
+  onLikeMovie,
+  onDislikeMovie
+}) => {
+  useEffect(() => {
+    document.title = 'Фильмы';
+  }, []);
 
   return (
-    <>
-      <SearchForm />
-      <MoviesCardList films={films} isLoading={isLoading} remainingFilms={remainingFilms} viewStillFilms={viewStillFilms} />
-      <Footer />
-    </>
-  )
-}
+    <Filter
+      initialFilms={initialFilms}
+      setInitialFilms={setInitialFilms}
+      savedFilms={savedFilms}
+      setSavedFilms={setSavedFilms}
+      loadAllMoviesList={loadAllMoviesList}
+      onError={onError}
+      isLoading={isLoading}
+      onLikeMovie={onLikeMovie}
+      onDislikeMovie={onDislikeMovie}
+      isSavedMovies={false}
+    />
+  );
+};
 
 export default Movies;

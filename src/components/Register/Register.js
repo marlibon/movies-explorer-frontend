@@ -5,59 +5,86 @@ import Input from '../Input/Input';
 import Logo from '../Logo/Logo';
 import Section from '../Section/Section';
 import './Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Register = () => {
-  const [values, setValues] = useState({})
-  function onSubmit () {
+const Register = ({ onRegister, loggedIn }) => {
+  const [values, setValues] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = 'Регистрация';
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate('/movies', { replace: true });
+    }
+  }, [loggedIn]);
+
+  function onSubmit(event) {
+    event.preventDefault();
+    const { email, password, name } = values;
+    onRegister({ email, password, name });
   }
-  function handleChange (e) {
-    setValues({ ...values, [e.target.name]: e.target.value })
+  function handleChange(e) {
+    setValues({ ...values, [e.target.name]: e.target.value });
   }
 
   return (
-    <Section theme='auth'>
+    <Section theme="auth">
       <Logo />
-      <h2 className='section__title'>Добро пожаловать!</h2>
+      <h2 className="section__title">Добро пожаловать!</h2>
       <Form
-        name='login'
-        buttonText='Зарегистрироваться'
+        name="login"
+        textforbutton="Зарегистрироваться"
         onSubmit={onSubmit}
         onChange={handleChange}
       >
         <Input
-          type='text'
-          name='name'
+          type="text"
+          name="name"
           required={true}
           minLength={6}
           maxLength={30}
-          label='Имя'
-          defaultValue='Виталий'
-        />
-        <Input
-          type='email'
-          name='email'
-          required={true}
-          minLength={6}
-          maxLength={30}
-          label='E-mail'
-          defaultValue='pochta@yandex.ru'
+          label="Имя"
+          defaultValue=""
           autoFocus={true}
+          pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
+          placeholder='Ваше имя (рус/латинские символы, " ", "-")'
         />
         <Input
-          type='password'
-          name='password'
+          type="email"
+          name="email"
           required={true}
           minLength={6}
           maxLength={30}
-          label='Пароль'
-          defaultValue='password123456'
+          label="E-mail"
+          defaultValue=""
+          autoComplete="username"
+          placeholder="Ваш емейл в формате email@mail.ru"
+          pattern="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"
+        />
+        <Input
+          type="password"
+          name="password"
+          required={true}
+          minLength={6}
+          maxLength={30}
+          label="Пароль"
+          defaultValue=""
           errorDefault={true}
+          autoComplete="current-password"
+          placeholder="Пароль от 6 символов"
         />
       </Form>
-      <p className='section__text'>Уже зарегистрированы?<Link className="section__link" to="/signin">Войти</Link></p>
+      <p className="section__text">
+        Уже зарегистрированы?
+        <Link className="section__link" to="/signin">
+          Войти
+        </Link>
+      </p>
     </Section>
-  )
-}
+  );
+};
 
 export default Register;

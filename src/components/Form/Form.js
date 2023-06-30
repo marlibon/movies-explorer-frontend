@@ -1,46 +1,49 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Form.css';
 
 const Form = ({
-    name,
-    onSubmit,
-    isFormValid,
-    buttonText,
-    onChange,
-    isEditingBegun,
-    children
+  name,
+  onSubmit,
+  textforbutton,
+  onChange,
+  isLoading,
+  children
 }) => {
-    const [validForm, setValidForm] = useState(true);
-    function handleChange (e) {
-        setValidForm(e.target.validity.valid)
-        onChange(e)
-    }
-    function handleSubmit (e) {
-        e.preventDefault();
-        onSubmit(e)
-    }
-    return (
-        <form
-            action="#"
-            name={name}
-            id={name}
-            className={`form form_type_${name}`}
-            noValidate
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-        >
-            <div>
-                {children}
-            </div>
-            <button
-                type="submit"
-                form={name}
-                className={`form__btn-submit`}
-                disabled={!validForm}
-            >
-                {buttonText}
-            </button>
-        </form>
-    )
-}
-export default Form
+  const [validForm, setValidForm] = useState(false);
+  const ref = useRef(null);
+  function handleChange(e) {
+    const isValidForm = ref.current.elements.length
+      ? [...ref.current.elements].some(
+          (element) => element.validity.valid === false
+        )
+      : false;
+    setValidForm(!isValidForm);
+    onChange(e);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(e);
+  }
+  return (
+    <form
+      action="#"
+      name={name}
+      id={name}
+      className={`form form_type_${name}`}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+      ref={ref}
+    >
+      <div>{children}</div>
+      <button
+        type="submit"
+        form={name}
+        className={`form__btn-submit`}
+        disabled={!validForm || isLoading ? true : false}
+      >
+        {isLoading ? 'Загрузка...' : textforbutton}
+      </button>
+    </form>
+  );
+};
+export default Form;

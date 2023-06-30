@@ -1,20 +1,5 @@
-export const myBirthday = new Date(1990, 10, 22)
-export const initialFilms = [
-    {
-        title: 'название фильма 1',
-        image: 'https://marlibon.github.io/how-to-learn/images/header-image.png',
-        hronology: '1ч 42мин',
-        isLiked: true
-    },
-    {
-        title: 'название фильма 2',
-        image: 'https://marlibon.github.io/how-to-learn/images/header-image.png',
-        hronology: '1ч 42мин',
-        isLiked: false
-    }, {
-        title: 'название фильма 3',
-        image: 'https://marlibon.github.io/how-to-learn/images/header-image.png',
-        hronology: '1ч 42мин',
-        isLiked: true
-    },
-]
+export const myBirthday = new Date(1990, 10, 22);
+export const MAX_DURATION_SHORT_FILMS = 40;
+export const SCREEN_WIDTH_PC = 820;
+export const SCREEN_WIDTH_TABLET = 530;
+export const SCREEN_WIDTH_MOBILE = 320;
