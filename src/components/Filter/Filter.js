@@ -138,9 +138,9 @@ const Filter = ({
 
   // следит за изменением чекбокса "короткометражки" и заново запускает поиск
   useEffect(() => {
-    // JSON.stringify(dataForm) !== localStorage.getItem('dataForm') &&
-    //   localStorage.getItem('filteredFilms') &&
-    handleSubmit();
+    JSON.stringify(dataForm) !== localStorage.getItem('dataForm') &&
+      localStorage.getItem('filteredFilms') &&
+      handleSubmit();
   }, [changeStateCheckbox]);
 
   return (
