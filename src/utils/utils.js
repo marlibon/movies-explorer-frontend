@@ -6,7 +6,7 @@ import {
 } from './constants';
 
 //функция фильтрации массива по переданным данным
-export function filterMovies({
+export function filterMovies ({
   initialFilms,
   searchText = '',
   filterShortFilms
@@ -15,7 +15,7 @@ export function filterMovies({
     if (filterShortFilms) {
       return item.duration <= MAX_DURATION_SHORT_FILMS;
     } else {
-      return item.duration > MAX_DURATION_SHORT_FILMS;
+      return true;
     }
   });
   filteredFilms = filteredFilms.filter((item) =>
@@ -27,7 +27,7 @@ export function filterMovies({
 }
 
 //функция расчета количества отображаемых карточек
-export function calculateCardsPerRow() {
+export function calculateCardsPerRow () {
   const screenWidth = window.innerWidth;
   let cardsPerRow, loadMoreCount;
 

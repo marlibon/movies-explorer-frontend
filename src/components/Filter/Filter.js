@@ -67,7 +67,7 @@ const Filter = ({
   }, []);
 
   // функция следит за изменением ширины страницы с задержкой
-  function handleResize() {
+  function handleResize () {
     setTimeout(() => {
       const { cardsPerRow, loadMoreCount } = calculateCardsPerRow();
       setQtyViewCards(cardsPerRow);
@@ -122,11 +122,11 @@ const Filter = ({
   };
 
   // функция для записи видимой части фильмов в стейт
-  function viewStillFilms() {
+  function viewStillFilms () {
     setFilms([...films, ...remainingFilms.slice(0, loadMoreCount)]);
   }
   // отслеживание формы и запись в стейт
-  function handleChange(event) {
+  function handleChange (event) {
     const value =
       event.target.type === 'checkbox'
         ? event.target.checked
@@ -138,9 +138,9 @@ const Filter = ({
 
   // следит за изменением чекбокса "короткометражки" и заново запускает поиск
   useEffect(() => {
-    JSON.stringify(dataForm) !== localStorage.getItem('dataForm') &&
-      localStorage.getItem('filteredFilms') &&
-      handleSubmit();
+    // JSON.stringify(dataForm) !== localStorage.getItem('dataForm') &&
+    //   localStorage.getItem('filteredFilms') &&
+    handleSubmit();
   }, [changeStateCheckbox]);
 
   return (

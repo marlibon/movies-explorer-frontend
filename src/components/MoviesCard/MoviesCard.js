@@ -40,35 +40,35 @@ const MoviesCard = ({
     ? movie.thumbnail
     : baseUrl + image?.formats?.thumbnail?.url;
   const [popupOpened, setPopupOpened] = useState(false);
-  function handleClickLikeButton() {
+  function handleClickLikeButton () {
     isLiked
       ? onDisLike(isId, setIsliked)
       : onLike(
-          {
-            country,
-            director,
-            duration,
-            year,
-            description,
-            trailerLink,
-            nameRU,
-            nameEN,
-            thumbnail,
-            movieId: id,
-            image: linkImage
-          },
-          setIsliked
-        );
+        {
+          country,
+          director,
+          duration,
+          year,
+          description,
+          trailerLink,
+          nameRU,
+          nameEN,
+          thumbnail,
+          movieId: id,
+          image: linkImage
+        },
+        setIsliked
+      );
   }
 
-  function convertMinutesToHoursAndMinutes(minutes) {
+  function convertMinutesToHoursAndMinutes (minutes) {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     if (!hours) return `${remainingMinutes}м`;
     return `${hours}ч ${remainingMinutes}м`;
   }
 
-  function calculateProportionVideoFrame() {
+  function calculateProportionVideoFrame () {
     const screenWidth = window.innerWidth;
     let width, height;
     const scale = 0.7;
@@ -77,7 +77,7 @@ const MoviesCard = ({
     setWidthAndHeightFramePopupVideo({ width, height });
   }
 
-  function handleResize() {
+  function handleResize () {
     setTimeout(() => {
       calculateProportionVideoFrame();
     }, 500);
@@ -132,9 +132,8 @@ const MoviesCard = ({
             <iframe
               width={widthAndHeightFramePopupVideo.width}
               height={widthAndHeightFramePopupVideo.height}
-              src={`https://www.youtube.com/embed/${
-                trailerLink.split('v=')[1]
-              }`}
+              src={`https://www.youtube.com/embed/${trailerLink.split('v=')[1]
+                }`}
               allowFullScreen
               title="YouTube video player"
             ></iframe>

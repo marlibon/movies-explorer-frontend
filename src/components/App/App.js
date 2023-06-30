@@ -32,7 +32,7 @@ const App = () => {
   const [initialFilms, setInitialFilms] = useState([]); // все фильмы
   const [savedFilms, setSavedFilms] = useState([]); // фильмы где установлен лайк
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [menuOpened, setMenuOpened] = useState(false);
   const [isNotifyPopupOpen, setIsNotifyPopupOpen] = useState(false);
   const [statusCompleted, setStatusCompleted] = useState(true);
@@ -51,14 +51,14 @@ const App = () => {
   const handleMenuOpened = (value) => {
     setMenuOpened(value);
   };
-  function handleError(err) {
+  function handleError (err) {
     setErrorMessage(err.message || 'Ошибка! Что-то пошло не так');
     setStatusCompleted(false);
     setIsNotifyPopupOpen(true);
     console.log(err);
   }
 
-  function handleAuth(email, password, name, authFunction) {
+  function handleAuth (email, password, name, authFunction) {
     setIsLoading(true);
     authFunction(email, password, name)
       .then((data) => {
@@ -90,14 +90,14 @@ const App = () => {
       .finally(() => setIsLoading(false));
   }
 
-  function handleLogin(email, password) {
+  function handleLogin (email, password) {
     handleAuth(email, password, null, authorize);
   }
 
-  function handleRegister({ email, password, name }) {
+  function handleRegister ({ email, password, name }) {
     handleAuth(email, password, name, register);
   }
-  function handleEditProfile({ email, name }) {
+  function handleEditProfile ({ email, name }) {
     setIsLoading(true);
     editProfile({ email, name })
       .then((data) => {
@@ -110,7 +110,7 @@ const App = () => {
       .finally(() => setIsLoading(false));
   }
   // функция сохраняет фильм на сервере
-  function handleLikeMovie(movie, setIsliked) {
+  function handleLikeMovie (movie, setIsliked) {
     document.body.style.cursor = 'wait';
     createMovie(movie)
       .then((movie) => {
@@ -123,7 +123,7 @@ const App = () => {
       .finally(() => (document.body.style.cursor = 'default'));
   }
   // функция обращается на сервер и удаляет карточку со списка любимых фильмов
-  function handleDislikeMovie(id, setIsliked) {
+  function handleDislikeMovie (id, setIsliked) {
     document.body.style.cursor = 'wait';
     getDeleteMovie(id)
       .then((movie) => {
@@ -137,7 +137,7 @@ const App = () => {
       .catch(handleError)
       .finally(() => (document.body.style.cursor = 'default'));
   }
-  function loadAllMoviesList() {
+  function loadAllMoviesList () {
     setIsLoading(true);
     return new Promise((resolve, reject) => {
       Promise.all([getSavedMovie(), getAllMovies()])
@@ -159,7 +159,7 @@ const App = () => {
         .finally(() => setIsLoading(false));
     });
   }
-  function loadSavedMoviesList() {
+  function loadSavedMoviesList () {
     setIsLoading(true);
     return new Promise((resolve, reject) => {
       getSavedMovie()
@@ -173,7 +173,7 @@ const App = () => {
     });
   }
 
-  useEffect(() => {}, [loggedIn]);
+  useEffect(() => { }, [loggedIn]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');

@@ -30,7 +30,7 @@ const MoviesCardList = ({
             <MoviesCard
               movie={movie}
               savedFilms={savedFilms}
-              key={index}
+              key={movie.id}
               handleClickDeleteButton={handleClickDeleteButton}
               onDisLike={onDisLike}
               onLike={onLike}
